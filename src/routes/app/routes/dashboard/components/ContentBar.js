@@ -5,15 +5,14 @@ import LinearProgress from 'material-ui/LinearProgress'
 import ReactEcharts from 'components/ReactECharts'
 import CHARTCONFIG from 'constants/ChartConfig'
 
-class Timebar extends Component {
+class ContentBar extends Component {
 
 	getOptions = createSelector(
 		props => props.games,
 		games => {
-
 			const oneStepPercent = 100 / games.size
-			const gamesStatistics = games.reduce((games, game) => {
-				const name = game.get('name')
+			const gamesStatistics = Object.keys( games.toJS() ).reduce((games, name) => {
+				// const name = game.get('name')
 				if (games.hasOwnProperty(name)) {
 					games[name] += 1
 				} else {
@@ -64,7 +63,6 @@ class Timebar extends Component {
 	)
 
 	render() {
-
 		return (
 			<div className="box box-default">
 				<div className="box-header">Разнообразие контента</div>
@@ -81,4 +79,4 @@ class Timebar extends Component {
 	}
 }
 
-module.exports = Timebar;
+module.exports = ContentBar;

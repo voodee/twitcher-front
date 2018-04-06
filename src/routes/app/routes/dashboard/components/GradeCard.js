@@ -29,12 +29,12 @@ class GradeCard extends Component {
 					<div className="call-to-action cta-inline">
 						<div className="cta-inner" style={{paddingTop: 0}}>
 							{
-								(channel && channel.getIn(['data', 'grad'])) ?
+								(channel && channel.getIn(['data', 'cache_grad'])) ?
 									<span
-										className={`mdl-typography--display-4 ${this.getTextColor( channel.getIn(['data', 'grad']) )}`}
+										className={`mdl-typography--display-4 ${this.getTextColor( channel.getIn(['data', 'cache_grad']) )}`}
 										style={{fontWeight: 'bold'}}
 									>
-										{ channel.getIn(['data', 'grad']) }
+										{ channel.getIn(['data', 'cache_grad']) }
 									</span>
 									:
 									<LinearProgress mode="indeterminate"/>

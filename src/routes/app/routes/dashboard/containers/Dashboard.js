@@ -60,7 +60,6 @@ const mapStateToProps = state => {
 		gamesStatisticsLoaded   = state.games_statistics.get('loaded'),
 		gamesStatistics         = state.games_statistics.get('items'),
 
-
 		channel                 = state.channels.getIn(['items', channel_id]),
 		stream                  = getStreamByChannel(state, channel_id),
 		hours                   = getHours(state, channel_id),

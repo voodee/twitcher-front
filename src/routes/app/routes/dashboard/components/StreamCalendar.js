@@ -12,7 +12,7 @@ class StreamCalendar extends Component {
 	getVirtulData = streams => {
 		const
 			format      = 'YYYY-MM-DD',
-			year        = '2017',
+			year        = '2018',
 			date        = +moment(year + '-01-01'),
 			end         = +moment((+year + 1) + '-01-01'),
 			hourTime    = 3600 * 1000,
@@ -82,7 +82,7 @@ class StreamCalendar extends Component {
 
 				calendar: [
 					{
-						range: '2017',
+						range: '2018',
 						cellSize: ['auto', 20]
 					}
 				],
@@ -111,6 +111,7 @@ class StreamCalendar extends Component {
 	)
 
 	render() {
+		console.log('streams',this.getOptions(this.props))
 		return (
 			<div className="box box-default">
 				<div className="box-header">Временная шкала</div>

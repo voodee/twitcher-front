@@ -28,7 +28,7 @@ const APPCONFIG = {
 
 		api: {
 			// host: 'http://localhost:3001/api/v1/'
-			host: 'http://128.199.37.134/api/v1/'
+			host: 'http://188.120.246.135/api/v1/'
 		}
 	}
 };

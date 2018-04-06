@@ -18,6 +18,7 @@ export const SET_HOURS      = 'CHANNELS@SET_HOURS'
 export const SET_AVERAGE    = 'CHANNELS@SET_AVERAGE'
 export const SET_VIDEOS     = 'CHANNELS@SET_VIDEOS'
 export const SET_GAMES      = 'CHANNELS@SET_GAMES'
+export const SET_STATISTICS = 'CHANNELS@SET_STATISTICS'
 
 const initialState = Map({
 	items       : Map({}),
@@ -60,6 +61,10 @@ export default (state = initialState, action) => {
 		case SET_GAMES:
 			return state
 				.setIn(['items', payload.channelId.toString(), 'data', 'games'], fromJS(payload.games))
+
+		case SET_STATISTICS:
+			return state
+				.setIn(['items', payload.channelId.toString(), 'data', 'statistics'], fromJS(payload.statistics))
 
 		case SET_TOP_FOLLOWED:
 			return state
@@ -125,6 +130,14 @@ export const setGames = (channelId, games) => ({
 	payload: {
 		channelId,
 		games
+	}
+})
+
+export const setStatistics = (channelId, statistics) => ({
+	type: SET_STATISTICS,
+	payload: {
+		channelId,
+		statistics
 	}
 })
 
@@ -230,6 +243,20 @@ export const loadGames = channelId => (dispatch, getState) => {
 		})
 }
 
+export const loadStatistics = channelId => (dispatch, getState) => {
+
+	API(getState())
+		.get(`twitch/channels/${channelId}/statistics.json`)
+		.then( ({ data }) => {
+			dispatch( setStatistics(channelId, data) )
+		})
+		.catch(error => {
+			console.log('error', error)
+		})
+
+
+}
+
 
 export const loadItem = (channelId, channel)  => (dispatch, getState) => {
 	const { settings, user } = getState()
@@ -248,6 +275,8 @@ export const loadItem = (channelId, channel)  => (dispatch, getState) => {
 			dispatch( loadHours(channelId) )
 			dispatch( loadVideos(channelId) )
 			dispatch( loadGames(channelId) )
+			dispatch( loadGames(channelId) )
+			dispatch( loadStatistics(channelId) )
 			dispatch( loadAverage() )
 		})
 		.catch(error => {
